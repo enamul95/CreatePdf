@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CreatePdf</string>
+    <string name="title">Thank You!</string>
+    <string name="sub_title">Your transaction is successful</string>
+    <string name="locatoin">Location</string>
+    <string name="city">Dhaka</string>
+</resources>
