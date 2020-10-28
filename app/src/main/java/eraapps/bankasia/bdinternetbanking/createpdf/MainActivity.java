@@ -60,10 +60,12 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS, PERMISSION_ALL);
         }
 
-        File file = new File(Environment.getExternalStorageDirectory(), "pdfsdcard_location");
+        File file = new File(this.getExternalFilesDir(null).getAbsolutePath(), "pdfsdcard_location");
         if (!file.exists()) {
             file.mkdir();
         }
+
+        //this.getExternalFilesDir(null)?.getAbsolutePath()
 
         btnCreatePdf = findViewById(R.id.btnCreatePdf);
         tv_title = findViewById(R.id.tv_title);
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         int pathHeight = 2;
 
         final String fileName = "mypdf";
-        file_name_path = "/visacard_receit/" + fileName + ".pdf";
+        file_name_path = "/pdfsdcard_location/"+fileName+".pdf";
         PdfDocument myPdfDocument = new PdfDocument();
         Paint paint = new Paint();
         Paint paint2 = new Paint();
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
         myPdfDocument.finishPage(documentPage);
 
-        File file = new File(Environment.getExternalStorageDirectory() + file_name_path);
+        File file = new File(this.getExternalFilesDir(null).getAbsolutePath()+file_name_path);
         try {
             myPdfDocument.writeTo(new FileOutputStream(file));
         } catch (IOException e) {
@@ -172,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewPdfFile() {
 
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + file_name_path);
+        File file = new File(this.getExternalFilesDir(null).getAbsolutePath()+file_name_path);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(file), "application/pdf");
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
